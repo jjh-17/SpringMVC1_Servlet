@@ -1,0 +1,23 @@
+V3은 ModelView 객체를 생성하고 반환해야 하므로 번거로움
+    ==> 컨트롤러가 ViewName을 반환하는 V4
+
+
+                       매핑 정보
+                          ▲▲
+                          ||
+                          ||   1.컨트롤러 조회
+                          ||
+         HTTP 요청         ||         2.컨트롤러 호출(paramMap, model)
+클라이언트 ========> Front Controller ===============> Controller
+                          ||        <===============
+                          ||          3.ViewName 반환
+                          ||
+                          ||   4.ViewResolver 호출
+      6.render(model) 호출 || <==================> ViewResolver
+                          ||   5.MyView 반환
+                          ||
+                          ||
+                          ||
+                          ▼▼
+        <============== MyView
+            HTML 응답

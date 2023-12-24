@@ -1,0 +1,25 @@
+
+V1에는 컨트롤러에서 뷰로 이동하는 코드가 중복됨
+    EX) String viewPath = "/WEB-INF/members.jsp";
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher(viewPath);
+        requestDispatcher.forward(request, response);
+        ==> 별도의 뷰 객체를 생성하여 이를 전담하도록 함
+
+                       매핑 정보
+                          ^^
+                          ||
+                          ||   1.URL 매핑 정보에서 컨트롤러 조회
+         HTTP 요청         ||         2.컨트롤러 호출
+클라이언트 ========> Front Controller ===============> Controller
+                          ||        <===============
+          4.render() 호출  ||          3.View 반환
+                          ||
+                          ▼▼
+                         View
+                          ||
+                          || 5.JSP forward
+                          ||
+                          ▼▼
+         <============== JSP
+             HTML 응답
+
